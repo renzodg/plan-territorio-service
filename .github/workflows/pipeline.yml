@@ -11,7 +11,6 @@ jobs:
     env:
       ECS_SERVICE_NAME : plan-territorio-svc
     name: Deploy to ECS
-    needs: run-tests
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     steps:
