@@ -1,0 +1,4 @@
+me/renzo/planterritorio/PlanTerritorioApplication.class
+me/renzo/planterritorio/model/Account.class
+me/renzo/planterritorio/service/FileService.class
+me/renzo/planterritorio/controllers/UploadFileController.class
