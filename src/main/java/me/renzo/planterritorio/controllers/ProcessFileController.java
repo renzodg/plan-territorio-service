@@ -2,7 +2,6 @@ package me.renzo.planterritorio.controllers;
 
 import java.io.IOException;
 import java.util.List;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.renzo.planterritorio.model.DBRecord;
@@ -26,11 +25,13 @@ public class ProcessFileController {
   private final FileWriterService fileWriterService;
 
   @CrossOrigin(value = "http://localhost:3000", exposedHeaders = HttpHeaders.CONTENT_DISPOSITION)
-  @PostMapping(path = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+  @PostMapping(
+      path = "",
+      consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+      produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
   public ResponseEntity<Resource> uploadFile(@RequestPart("dataFile") MultipartFile multipartFile)
       throws IOException {
-    List<DBRecord> dbRecords = fileReaderService
-        .readAccountsData(multipartFile.getInputStream());
+    List<DBRecord> dbRecords = fileReaderService.readAccountsData(multipartFile.getInputStream());
 
     byte[] databaseFile = fileWriterService.createDatabaseFile(dbRecords);
 
@@ -38,7 +39,8 @@ public class ProcessFileController {
     String originalFileNameWithoutExtension = multipartFile.getOriginalFilename().split("\\.")[0];
     String fileName = String.format("%s_BD.xlsx", originalFileNameWithoutExtension);
     return ResponseEntity.ok()
-            .header(HttpHeaders.CONTENT_DISPOSITION, String.format("attachment; filename=\"%s\"", fileName))
-            .body(resource);
+        .header(
+            HttpHeaders.CONTENT_DISPOSITION, String.format("attachment; filename=\"%s\"", fileName))
+        .body(resource);
   }
 }

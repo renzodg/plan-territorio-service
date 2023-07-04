@@ -35,7 +35,7 @@ public class FileReaderService {
     List<DBRecord> dbRecords = new ArrayList<>();
     kamSheets.forEach(
         sheet -> {
-        log.info("Processing sheet: {}", sheet.getSheetName());
+          log.info("Processing sheet: {}", sheet.getSheetName());
           String manager =
               sheet
                   .getRow(managerLocation.getFirst())
@@ -66,7 +66,6 @@ public class FileReaderService {
             if (prioritizedCell == null) {
               continue;
             }
-
 
             // vertical vs horizontal fields
             for (Cell verticalFieldCell : verticalFieldsCells) {
@@ -100,14 +99,17 @@ public class FileReaderService {
             }
           }
         });
-        log.info("Database records size: {}", dbRecords.size());
+    log.info("Database records size: {}", dbRecords.size());
     return dbRecords;
   }
 
   private List<Cell> findVerticalFields(Sheet sheet) {
     Row row = sheet.getRow(VERTICAL_FIELDS_ROW_INDEX);
-    // VERTICAL_FIELDS_SIZE - 1, because we ignore the last vertical field ("Priorizado") as a product
-    return IntStream.range(VERTICAL_FIELDS_COLUMN_INDEX_START, VERTICAL_FIELDS_COLUMN_INDEX_START + (VERTICAL_FIELDS_SIZE - 1))
+    // VERTICAL_FIELDS_SIZE - 1, because we ignore the last vertical field ("Priorizado") as a
+    // product
+    return IntStream.range(
+            VERTICAL_FIELDS_COLUMN_INDEX_START,
+            VERTICAL_FIELDS_COLUMN_INDEX_START + (VERTICAL_FIELDS_SIZE - 1))
         .mapToObj(row::getCell)
         .filter(Objects::nonNull)
         .collect(Collectors.toList());
