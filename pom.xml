@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>me.renzo</groupId>
-	<artifactId>plan-territorio-svc</artifactId>
+	<artifactId>plan-territorio-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>plan-territorio-svc</name>
+	<name>plan-territorio-service</name>
 	<description>Procesador de planes de territorio</description>
 	<properties>
 		<java.version>17</java.version>
