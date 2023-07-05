@@ -24,7 +24,9 @@ public class ProcessFileController {
   private final FileReaderService fileReaderService;
   private final FileWriterService fileWriterService;
 
-  @CrossOrigin(value = "http://localhost:3000", exposedHeaders = HttpHeaders.CONTENT_DISPOSITION)
+  @CrossOrigin(
+      origins = {"http://localhost:3000", "https://plan-territorio-web.vercel.app"},
+      exposedHeaders = HttpHeaders.CONTENT_DISPOSITION)
   @PostMapping(
       path = "",
       consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
